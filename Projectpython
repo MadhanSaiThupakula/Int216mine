@@ -1,0 +1,64 @@
+import tkinter as tk
+
+class PythonLearningApp:
+    def __init__(self, master):
+        self.master = master
+        master.title("Python Learning App")
+
+        # Create a login page with a username and password field and a login button
+        self.username_label = tk.Label(master, text="Username:")
+        self.username_label.pack()
+
+        self.username_entry = tk.Entry(master)
+        self.username_entry.pack()
+
+        self.password_label = tk.Label(master, text="Password:")
+        self.password_label.pack()
+
+        self.password_entry = tk.Entry(master, show="*")
+        self.password_entry.pack()
+
+        self.login_button = tk.Button(master, text="Login", command=self.login)
+        self.login_button.pack()
+
+    def login(self):
+        # Check the username and password
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        if username == "user" and password == "password":
+            # If the username and password are correct, show the welcome message and lesson button
+            self.username_label.pack_forget()
+            self.username_entry.pack_forget()
+            self.password_label.pack_forget()
+            self.password_entry.pack_forget()
+            self.login_button.pack_forget()
+
+            self.welcome_message = tk.Label(self.master, text="Welcome to Python Learning App!")
+            self.welcome_message.pack()
+
+            self.lesson_button = tk.Button(self.master, text="Start Lesson 1", command=self.start_lesson)
+            self.lesson_button.pack()
+        else:
+            # If the username and password are incorrect, show an error message
+            self.error_message = tk.Label(self.master, text="Invalid username or password. Please try again.")
+            self.error_message.pack()
+
+    def start_lesson(self):
+        # Hide the welcome message and lesson button
+        self.welcome_message.pack_forget()
+        self.lesson_button.pack_forget()
+
+        # Create a lesson title and description
+        self.lesson_title = tk.Label(self.master, text="Lesson 1: Introduction to Python")
+        self.lesson_title.pack()
+
+        self.lesson_description = tk.Label(self.master, text="In this lesson, you will learn the basics of Python programming.")
+        self.lesson_description.pack()
+
+        # Add some content for the first lesson
+        self.lesson_content = tk.Label(self.master, text="Python is a high-level, interpreted programming language that is easy to learn and use. It was created by Guido van Rossum in the late 1980s and has since become one of the most popular programming languages in the world. Python is known for its simplicity, readability, and ease of use, making it a great language for beginners to start with. Some of the things you will learn in this lesson include:\n\n- Running Python code\n- Basic syntax\n- Variables and data types\n- Basic operations\n\nLet's get started!")
+        self.lesson_content.pack()
+root = tk.Tk()
+app = PythonLearningApp(root)
+root.mainloop()
